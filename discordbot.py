@@ -1,7 +1,8 @@
-import os
 import discord
+import os
 import random
 import time
+import traceback
 
 token = os.environ['DISCORD_BOT_TOKEN']
 
