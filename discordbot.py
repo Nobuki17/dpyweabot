@@ -8,7 +8,7 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 @bot.event
 async def on_command_error(ctx, error):
-    await bot.change_presence(activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(client.guilds)}"))
+    await client.change_presence(activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(client.guilds)}"))
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
