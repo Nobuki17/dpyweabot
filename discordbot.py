@@ -4,14 +4,14 @@ import random
 import time
 import traceback
 
-token = os.environ['DISCORD_BOT_TOKEN']
-
 client = discord.Client()
 
 @client.event
 async def on_ready():
     print("Weabot / うぇあぼっと のログインが完了しました。")
     await client.change_presence(activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(client.guilds)}"))
+    
+token = os.environ['DISCORD_BOT_TOKEN']
 
 #inlineはTrueになってるやつが前のやつの隣に行く、Falseは前のやつの下
 @client.event
