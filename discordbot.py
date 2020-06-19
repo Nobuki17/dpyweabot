@@ -2,6 +2,7 @@ import discord
 import random
 import time
 from discord.ext import commands
+import discord.ext
 import os
 import asyncio
 import traceback
