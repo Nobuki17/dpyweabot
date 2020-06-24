@@ -1,13 +1,13 @@
 import discord
 import random
 import time
-from discord.ext import commands
-import discord.ext
-import os
 import asyncio
+import discord.ext
+from discord.ext import commands
+import os
 import traceback
 
-bot = commands.Bot(command_prefix='wb:')
+bot = commands.Bot(command_prefix="wb:", help_command=None)
 token = os.environ['DISCORD_BOT_TOKEN']
 
 
@@ -16,11 +16,10 @@ async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
-
-@bot.event
+    
 async def on_ready():
     print("Weabot / うぇあぼっと のログインが完了しました。")
-    await bot.change_presence(activity=discord.Game(f"ヘルプは help | 導入サーバー数: {len(bot.guilds)}"))
+    await bot.change_presence(status=discord.Status.idle,activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(bot.guilds)}"))
 
 async def embox(title,description,color,message):
       embed = discord.Embed(title=title,description=description,color=color)
@@ -43,7 +42,7 @@ async def help(ctx):#コマンドを定義するときの関数は必ずContext�
 async def about(ctx):
     embed = discord.Embed(title="このbotについて...", description="Weabot / うぇあぼっと",color=0x77aa27)
     embed.add_field(name="製作者", value="Weapon of / うぇぽん#6928",inline=True)
-    embed.add_field(name="バージョン", value="Ver.1.5b",inline=False)
+    embed.add_field(name="バージョン", value="Ver.1.6\nコマンドフレームワーク移行版",inline=False)
     embed.add_field(name="招待リンク", value="https://discord.com/api/oauth2/authorize?bot_id=699585993988374628&permissions=117824&scope=bot",inline=False)
     await ctx.send(embed=embed)
 
@@ -55,12 +54,8 @@ async def serverintroduction(ctx):
     await ctx.send(embed=embed)
 
 @bot.command()
-async def about(ctx):
-    await embox("このBOTの製作者","このBOTの製作者は、 **Weapon of / うぇぽん#6928** です。\n他にも、Pythonに詳しい人からのサポートを受けて開発されています。",0x77aa27,ctx.message)
-
-@bot.command()
 async def newinfo(ctx):
-    await embox("新着情報","**2020 5/15** 一般公開を開始しました。\n**2020 5/14** help等のコマンドを3つ実装しました。\n**2020 5/2 **  BOTの稼働を開始しました。",0x77aa27,ctx.message)
+    await embox("新着情報","\n**2020 6/24** コマンドフレームワークへ移行しました。**2020 5/15** 一般公開を開始しました。\n**2020 5/14** help等のコマンドを3つ実装しました。\n**2020 5/2 **  BOTの稼働を開始しました。",0x77aa27,ctx.message)
 
 @bot.command()
 async def test(ctx):
