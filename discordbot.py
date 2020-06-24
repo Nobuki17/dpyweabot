@@ -18,7 +18,6 @@ async def on_command_error(ctx, error):
     await ctx.send(error_msg)
     
 async def on_ready():
-    print("Weabot / うぇあぼっと のログインが完了しました。")
     await bot.change_presence(status=discord.Status.idle,activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(bot.guilds)}"))
 
 async def embox(title,description,color,message):
