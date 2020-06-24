@@ -13,7 +13,9 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.idle,activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(bot.guilds)}"))
+    await bot.change_presence(activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(bot.guilds)}"))
+    
+    #status=discord.Status.idle で退席状態に
     
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
