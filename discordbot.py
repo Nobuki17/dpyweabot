@@ -12,13 +12,14 @@ token = os.environ['DISCORD_BOT_TOKEN']
 
 
 @bot.event
+async def on_ready():
+    await bot.change_presence(status=discord.Status.idle,activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(bot.guilds)}"))
+    
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     await ctx.send(error_msg)
-    
-async def on_ready():
-    await bot.change_presence(status=discord.Status.idle,activity=discord.Game(f"ヘルプは wb:help | 導入サーバー数: {len(bot.guilds)}"))
+   
 
 async def embox(title,description,color,message):
       embed = discord.Embed(title=title,description=description,color=color)
