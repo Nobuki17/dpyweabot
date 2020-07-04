@@ -65,7 +65,8 @@ async def test(ctx):
 
 @bot.command()
 async def dice(ctx):
-    await embox(f"{ctx.author.name}さんがサイコロコマンドを実行しました","何が出るかな？！何が出るかな？！",0x77aa27,ctx.message)
+    embed = discord.Embed(title=f"{ctx.author.name}さんがサイコロコマンドを実行しました", description="何が出るかな？！何が出るかな？！",color=0x77aa27)
+    embed.set_footer(text="f"{ctx.author.name}さんによる実行")
     asyncio.sleep(1) # time.sleepはBotの動作を止める原因になるので厳禁!!!代わりにasyncio.sleep()を使おう
     x = random.randint(1,6) 
     await embox("結果は、、",f"結果は {x} でした！",0x77aa27,ctx.message)#{}の中ではstr型じゃ無くてもよい
