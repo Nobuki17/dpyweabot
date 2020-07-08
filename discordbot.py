@@ -29,13 +29,13 @@ async def embox(title,description,color,message):
 
 @bot.command()
 async def help(ctx):#コマンドを定義するときの関数は必ずContextという引数が渡される。つまり引数を最低一つだけでも書いておかないと動かないので注意
-    embed = discord.Embed(title="ヘルプ", description="このヘルプコマンドにはプレフィックスを書いていないため、\n実行には全て`コマンド名`とする必要があります。",color=0x77aa27)
+    embed = discord.Embed(title="ヘルプ", description="このヘルプコマンドにはプレフィックスを書いていないため、\n実行には全て`wb:コマンド名`とする必要があります。",color=0x77aa27)
     #↑ここのテキストは自分で修正よろしく
     embed.add_field(name="help", value="このコマンドです。",inline=False)
     embed.add_field(name="newinfo", value="新着情報を確認します。",inline=False)
     embed.add_field(name="wiki", value="開発者が知っていること、関係することについてwiki形式で見ることができます。",inline=False)
     embed.add_field(name="dice", value="サイコロを振ることができます。",inline=False)
-    embed.add_field(name="ping", value="BOTのメッセージ送信速度をチェックします。",inline=False)
+    embed.add_field(name="ping", value="botのメッセージ送信速度をチェックします。",inline=False)
     embed.add_field(name="about", value="botについてや、botの招待リンクを確認できます。",inline=False)
     embed.add_field(name="serverintroduction", value="開発者が運営しているサーバーについて表示できます。",inline=False)
     await ctx.send(embed=embed)#Contextにはいろいろな情報が入っており、そこから様々な関数、情報にアクセスできる。ctx.sendがその一つ
@@ -44,7 +44,7 @@ async def help(ctx):#コマンドを定義するときの関数は必ずContext�
 async def about(ctx):
     embed = discord.Embed(title="このbotについて...", description="Weabot / うぇあぼっと",color=0x77aa27)
     embed.add_field(name="製作者", value="うぇあChannel#6928",inline=True)
-    embed.add_field(name="バージョン", value="Ver.1.6a\nコマンドフレームワーク移行版",inline=False)
+    embed.add_field(name="バージョン", value="Ver.1.6b\nコマンドフレームワーク移行版",inline=False)
     embed.add_field(name="このbotを招待", value="[こちら](https://discord.com/oauth2/authorize?client_id=699585993988374628&permissions=379968&scope=bot)から招待できます",inline=False)
     await ctx.send(embed=embed)
 
@@ -79,7 +79,7 @@ async def wiki(ctx, *,arg:str=""):
     ちなみに引数が無いときは空の文字列が自動で入るようになっているけどここの説明は難しいので省略
     """
     if not arg:#こうしておくと、文字列が空であるとき(つまりこの場合は引数が渡されなかったとき)にifの中が実行される
-        embed = discord.Embed(title="WeaのWikiへようこそ！", description="開発者が知っていることや関係することについてwiki形式で紹介します。\n(実行は全て`wiki 単語名`というように行ってください。)",color=0x77aa27)
+        embed = discord.Embed(title="WeaのWikiへようこそ！", description="開発者が知っていることや関係することについてwiki形式で紹介します。\n(実行は全て`wb:wiki 単語名`というように行ってください。)",color=0x77aa27)
         embed.add_field(name="現在登録されているもの:", value="アスファルト 9: Legends\nNintendo Switch\nTJAPlayer3")
         await ctx.send(embed=embed)
 
@@ -144,6 +144,9 @@ async def on_message(message):
         
     elif message.content.startswith("暇"):
         await message.channel.send("暇ですねぇ...")
+        
+    elif message.content.startswith("初めまして"):
+        await message.channel.send("初めまして！")                                  
 
     await bot.process_commands(message)#on_messageの定義内の最後にこれを入れないと定義したコマンドが動かなくなる。注意
 
