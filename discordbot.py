@@ -112,6 +112,14 @@ async def on_message(message):
     if bot.user in message.mentions:
         print(f"{message.author.name}にメンションされました")
         await message.channel.send(f"{message.author.mention} ヘルプが必要ですか？\nwb:help でヘルプを表示します。")
+        
+    elif message.content == "wb:dice":
+        embed = discord.Embed(title="サイコロコマンドが実行されました", description="何が出るかな？！何が出るかな？！",color=0x77aa27)
+        embed.set_footer(f"text={message.author.name}さんによる実行")
+        await asyncio.sleep(1)
+        x = random.randint(1,6) # 50から100の乱数をxに代入
+        await embox("結果は、、",f"結果は {str(x)} でした！",0x77aa27,message)
+        return
 
     elif message.content.startswith("こんにち"):
         await message.channel.send("こんにちは！")
