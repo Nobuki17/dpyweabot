@@ -114,8 +114,8 @@ async def on_message(message):
         await message.channel.send(f"{message.author.mention} ヘルプが必要ですか？\nwb:help でヘルプを表示します。")
         
     elif message.content == "wb:dice":
-        await embox(f"サイコロコマンドが実行されました","何が出るかな？！何が出るかな？！\n実行者:{message.author.name}",color=0x77aa27)
-        await asyncio.sleep(1)
+        await embox(f"サイコロコマンドが実行されました","何が出るかな？！何が出るかな？！\n実行者:{message.author.name}",0x77aa27,message)
+        await asyncio.sleep(2)
         x = random.randint(1,6) # 50から100の乱数をxに代入
         await embox("結果は、、",f"結果は {str(x)} でした！",0x77aa27,message)
         return
