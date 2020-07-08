@@ -34,7 +34,7 @@ async def help(ctx):#コマンドを定義するときの関数は必ずContext�
     embed.add_field(name="help", value="このコマンドです。",inline=False)
     embed.add_field(name="newinfo", value="新着情報を確認します。",inline=False)
     embed.add_field(name="wiki", value="開発者が知っていること、関係することについてwiki形式で見ることができます。",inline=False)
-    embed.add_field(name="dice", value="サイコロを振ることができます。\n(現在エラーのため使用できません)",inline=False)
+    embed.add_field(name="dice", value="サイコロを振ることができます。",inline=False)
     embed.add_field(name="ping", value="BOTのメッセージ送信速度をチェックします。",inline=False)
     embed.add_field(name="about", value="botについてや、botの招待リンクを確認できます。",inline=False)
     embed.add_field(name="serverintroduction", value="開発者が運営しているサーバーについて表示できます。",inline=False)
@@ -64,19 +64,11 @@ async def test(ctx):
     await embox("これはテストコマンドです。","特に意味はありません。",0x77aa27,ctx.message)
 
 @bot.command()
-async def dice(ctx):
-    embed = discord.Embed(title="サイコロコマンドが実行されました", description="何が出るかな？！何が出るかな？！",color=0x77aa27)
-    embed.set_footer(f"{ctx.author.name} さんによる実行")
-    await asyncio.sleep(1) # time.sleepはBotの動作を止める原因になるので厳禁!!!代わりにasyncio.sleep()を使おう
-    x = random.randint(1,6) 
-    await embox("結果は、、",f"結果は {x} でした！",0x77aa27,ctx.message)#{}の中ではstr型じゃ無くてもよい
-
-@bot.command()
 async def ping(ctx):
     starttime = time.time()
-    msg = await ctx.send("測定中です...しばらくお待ちください。")
+    msg = await ctx.send("Pingを測定しています。\nしばらくお待ちください...")
     ping = time.time() - starttime
-    await msg.edit(content=f"結果:{round(ping * 1000)}ms")
+    await msg.edit(content=f"測定結果:{round(ping * 1000)}ms")
     #float(ping * 1000)
 
 @bot.command()
