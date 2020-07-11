@@ -151,14 +151,16 @@ async def on_message(message):
         GLOBAL_CH_NAME = "weabot-global" # グローバルチャットのチャンネル名
 
     elif message.channel.name == GLOBAL_CH_NAME:
-        # hoge-globalの名前をもつチャンネルに投稿されたので、メッセージを転送する
-
         await message.delete() # 元のメッセージは削除しておく
+        # hoge-globalの名前をもつチャンネルに投稿されたので、メッセージを転送する
 
         channels = client.get_all_channels()
         global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
         # channelsはbotの取得できるチャンネルのイテレーター
         # global_channelsは hoge-global の名前を持つチャンネルのリスト
+        
+        embed = discord.Embed(title="weabot-global",
+            description=message.content, color=0x00bfff)
 
         embed.set_author(name=message.author.display_name, 
             icon_url=message.author.avatar_url_as(format="png"))
