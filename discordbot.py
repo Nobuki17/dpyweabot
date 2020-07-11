@@ -9,6 +9,7 @@ import traceback
 
 bot = commands.Bot(command_prefix="wb:", help_command=None)
 token = os.environ['DISCORD_BOT_TOKEN']
+GLOBAL_CH_NAME = "weabot-global" # グローバルチャットのチャンネル名
 
 
 @bot.event
@@ -147,8 +148,6 @@ async def on_message(message):
         
     elif message.content.startswith("初めまして"):
         await message.channel.send("初めまして！")
-        
-        GLOBAL_CH_NAME = "weabot-global" # グローバルチャットのチャンネル名
 
     elif message.channel.name == GLOBAL_CH_NAME:
         await message.delete() # 元のメッセージは削除しておく
