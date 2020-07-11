@@ -148,15 +148,15 @@ async def on_message(message):
     elif message.content.startswith("初めまして"):
         await message.channel.send("初めまして！")
         
-        GLOBAL_CH_NAME = "hoge-global" # グローバルチャットのチャンネル名
+        GLOBAL_CH_NAME = "weabot-global" # グローバルチャットのチャンネル名
 
-    elif message.channel.name == weabot-global:
+    elif message.channel.name == GLOBAL_CH_NAME:
         # hoge-globalの名前をもつチャンネルに投稿されたので、メッセージを転送する
 
         await message.delete() # 元のメッセージは削除しておく
 
         channels = client.get_all_channels()
-        global_channels = [ch for ch in channels if ch.name == weabot-global]
+        global_channels = [ch for ch in channels if ch.name == GLOBAL_CH_NAME]
         # channelsはbotの取得できるチャンネルのイテレーター
         # global_channelsは hoge-global の名前を持つチャンネルのリスト
 
