@@ -16,4 +16,4 @@ jobs:
     - name: Run flake8
       run: flake8 --ignore=E302,E501
     - name: Update
-      run: pip install --upgrade discord.py[voice] flake8
+      run: python pip install --upgrade discord.py[voice] flake8
